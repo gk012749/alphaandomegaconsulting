@@ -2,514 +2,1123 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Alpha & Omega Consulting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alpha + Omega Consulting</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --gold: #C9A84C;
-      --gold-light: #E8C97A;
-      --dark: #0D0D0D;
-      --dark-2: #1A1A1A;
-      --dark-3: #232323;
-      --white: #F5F5F0;
-      --gray: #9A9A9A;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --dark: #0d0d0d;
+      --dark-2: #171717;
+      --dark-3: #202020;
+      --white: #f5f5f0;
+      --gray: #a3a3a3;
+      --gray-soft: #d7d7cf;
+      --line: rgba(201, 168, 76, 0.18);
+      --blue: #0b3b82;
+      --green: #19d67d;
+      --green-bg: #e8f3ed;
+      --purple: #30398f;
     }
 
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Georgia', serif;
+      font-family: Inter, Arial, Helvetica, sans-serif;
       background: var(--dark);
       color: var(--white);
+      line-height: 1.5;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+
+    .page-shell {
+      width: min(1280px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      background: rgba(13, 13, 13, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-brand img {
+      height: 40px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.98;
+    }
+
+    .nav-brand-text {
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 10px;
+      line-height: 1.2;
+      color: var(--gray-soft);
+      font-weight: 300;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      list-style: none;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gray-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 12px;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+
+    .nav-button {
+      text-decoration: none;
+      background: var(--gold);
+      color: var(--dark);
+      border: 1px solid var(--gold);
+      padding: 12px 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 12px;
+      font-weight: 700;
+      transition: all 0.25s ease;
+    }
+
+    .nav-button:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .hero-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 116px 0 40px;
+      background:
+        radial-gradient(circle at top, rgba(201, 168, 76, 0.11), transparent 34%),
+        linear-gradient(180deg, #101010 0%, #0d0d0d 100%);
+    }
+
+    .hero-panel {
+      min-height: 55vh;
+      width: 100%;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(201,168,76,0.05));
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      padding: 52px;
+    }
+
+    .hero-panel::before {
+      content: '';
+      position: absolute;
+      inset: 20px;
+      border: 1px solid rgba(201, 168, 76, 0.08);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      max-width: 980px;
+    }
+
+    .hero-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.34em;
+      font-size: 12px;
+      color: var(--gold-light);
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-size: clamp(46px, 8vw, 112px);
+      line-height: 0.94;
+      letter-spacing: -0.045em;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero-title .plus { color: var(--gold); }
+
+    .hero-subtitle {
+      max-width: 720px;
+      margin: 0 auto 34px;
+      color: rgba(245,245,240,0.78);
+      font-size: 18px;
+      line-height: 1.8;
+      font-family: Georgia, serif;
+    }
+
+    .hero-actions {
+      display: inline-flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      border: 1px solid rgba(245,245,240,0.12);
+      padding: 14px;
+      min-width: 420px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .card-button,
+    .energy-submit,
+    .cheer-submit {
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--dark);
+      border: 1px solid var(--gold);
+      padding: 16px 28px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(245,245,240,0.22);
+      padding: 16px 28px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .services-section {
+      padding: 0 0 116px;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      font-size: 11px;
+      color: var(--gold-light);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 4vw, 50px);
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .section-copy {
+      max-width: 760px;
+      margin: 0 auto;
+      color: var(--gray-soft);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    .service-card {
+      aspect-ratio: 1 / 1;
+      background: var(--dark-2);
+      border: 1px solid var(--line);
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(201,168,76,0.08), transparent 56%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      z-index: -1;
+    }
+
+    .service-card:hover::before { opacity: 1; }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201,168,76,0.38);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .card-number {
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 12px;
+    }
+
+    .card-icon {
+      font-size: 36px;
+      line-height: 1;
+    }
+
+    .service-card h3 {
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .service-card p {
+      color: var(--gray-soft);
+      font-size: 15px;
+      line-height: 1.75;
+      margin-bottom: 24px;
+      max-width: 320px;
+    }
+
+    .card-button {
+      align-self: flex-start;
+      border: 1px solid rgba(201,168,76,0.38);
+      color: var(--gold-light);
+      padding: 12px 16px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      background: transparent;
+    }
+
+    .card-button:hover {
+      background: rgba(201,168,76,0.08);
+      transform: translateY(-2px);
+    }
+
+    .about-section {
+      padding: 110px 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 54px;
+      align-items: start;
+    }
+
+    .about-copy h2 {
+      font-size: clamp(30px, 4vw, 56px);
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+      margin-bottom: 18px;
+    }
+
+    .about-copy p {
+      color: var(--gray-soft);
+      font-size: 15px;
+      line-height: 1.85;
+      margin-bottom: 18px;
+      max-width: 680px;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .stat-card {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      min-height: 150px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .stat-value {
+      font-size: 40px;
+      color: var(--gold-light);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      color: var(--gray-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 11px;
       line-height: 1.6;
     }
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(13,13,13,0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(201,168,76,0.3);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 60px; height: 72px;
-    }
-    .nav-logo {
-      display: flex; align-items: center; gap: 14px;
-    }
-    .nav-logo .symbol {
-      font-size: 28px; color: var(--gold); font-weight: bold; letter-spacing: -2px;
-    }
-    .nav-logo .name {
-      font-size: 15px; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--white); line-height: 1.2;
-    }
-    .nav-logo .name span { color: var(--gold); }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
-    .nav-links a {
-      text-decoration: none; color: var(--gray);
-      font-family: 'Arial', sans-serif; font-size: 13px; letter-spacing: 2px;
-      text-transform: uppercase; transition: color 0.3s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-    .nav-cta {
-      background: var(--gold); color: var(--dark);
-      padding: 10px 24px; border: none; cursor: pointer;
-      font-family: 'Arial', sans-serif; font-size: 12px;
-      letter-spacing: 2px; text-transform: uppercase; font-weight: bold;
-      transition: background 0.3s;
-    }
-    .nav-cta:hover { background: var(--gold-light); }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center;
-      background: linear-gradient(135deg, #0D0D0D 0%, #1A1510 50%, #0D0D0D 100%);
-      position: relative; overflow: hidden;
-      padding: 100px 40px 60px;
-    }
-    .hero::before {
-      content: 'Α Ω';
-      position: absolute;
-      font-size: 400px;
-      color: rgba(201,168,76,0.04);
-      font-weight: bold;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      letter-spacing: -20px;
-      pointer-events: none;
-      white-space: nowrap;
-    }
-    .hero-content { position: relative; max-width: 800px; }
-    .hero-eyebrow {
-      font-family: 'Arial', sans-serif;
-      font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 24px;
-    }
-    .hero h1 {
-      font-size: clamp(42px, 7vw, 80px);
-      font-weight: normal; line-height: 1.1;
-      margin-bottom: 12px;
-    }
-    .hero h1 .amp { color: var(--gold); }
-    .hero-subtitle {
-      font-family: 'Arial', sans-serif;
-      font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
-      color: var(--gray); margin-bottom: 32px;
-    }
-    .hero-divider {
-      width: 60px; height: 1px;
-      background: var(--gold); margin: 0 auto 32px;
-    }
-    .hero p {
-      font-size: 18px; color: rgba(245,245,240,0.75);
-      max-width: 560px; margin: 0 auto 48px;
-      line-height: 1.8;
-    }
-    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--gold); color: var(--dark);
-      padding: 16px 40px; border: none; cursor: pointer;
-      font-family: 'Arial', sans-serif; font-size: 12px;
-      letter-spacing: 2px; text-transform: uppercase; font-weight: bold;
-      transition: all 0.3s; text-decoration: none; display: inline-block;
-    }
-    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .btn-secondary {
-      background: transparent; color: var(--gold);
-      padding: 16px 40px; border: 1px solid var(--gold); cursor: pointer;
-      font-family: 'Arial', sans-serif; font-size: 12px;
-      letter-spacing: 2px; text-transform: uppercase; font-weight: bold;
-      transition: all 0.3s; text-decoration: none; display: inline-block;
-    }
-    .btn-secondary:hover { background: rgba(201,168,76,0.1); transform: translateY(-2px); }
-
-    /* SECTION COMMON */
-    section { padding: 100px 40px; }
-    .section-label {
-      font-family: 'Arial', sans-serif;
-      font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 16px; text-align: center;
-    }
-    .section-title {
-      font-size: clamp(32px, 4vw, 48px); font-weight: normal;
-      text-align: center; margin-bottom: 16px;
-    }
-    .section-divider {
-      width: 50px; height: 1px; background: var(--gold);
-      margin: 0 auto 24px;
-    }
-    .section-intro {
-      text-align: center; color: var(--gray);
-      font-family: 'Arial', sans-serif; font-size: 15px;
-      max-width: 580px; margin: 0 auto 64px; line-height: 1.7;
+    .subpage {
+      display: none;
+      padding: 110px 0;
     }
 
-    /* SERVICES */
-    #services { background: var(--dark-2); }
-    .services-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2px; max-width: 1200px; margin: 0 auto;
-    }
-    .service-card {
-      background: var(--dark-3);
-      padding: 52px 40px;
-      border-top: 3px solid transparent;
-      transition: all 0.4s;
-      cursor: default;
-    }
-    .service-card:hover {
-      border-top-color: var(--gold);
-      transform: translateY(-4px);
-      background: #2a2a2a;
-    }
-    .service-icon {
-      font-size: 36px; margin-bottom: 24px;
-    }
-    .service-number {
-      font-family: 'Arial', sans-serif;
-      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 16px;
-    }
-    .service-card h3 {
-      font-size: 24px; font-weight: normal; margin-bottom: 16px;
-    }
-    .service-card p {
-      color: var(--gray); font-family: 'Arial', sans-serif;
-      font-size: 14px; line-height: 1.8; margin-bottom: 28px;
-    }
-    .service-features {
-      list-style: none; margin-bottom: 32px;
-    }
-    .service-features li {
-      font-family: 'Arial', sans-serif; font-size: 13px;
-      color: rgba(245,245,240,0.7); padding: 6px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .service-features li::before {
-      content: '—'; color: var(--gold); flex-shrink: 0;
-    }
-    .service-link {
-      font-family: 'Arial', sans-serif; font-size: 12px;
-      letter-spacing: 2px; text-transform: uppercase;
-      color: var(--gold); text-decoration: none;
-      display: inline-flex; align-items: center; gap: 8px;
-      transition: gap 0.3s;
-    }
-    .service-link:hover { gap: 14px; }
+    .subpage.active { display: block; }
 
-    /* ABOUT */
-    #about {
-      background: var(--dark);
-      display: flex; align-items: center;
+    .energy-page {
+      background: #f4f5f4;
+      color: #14233e;
     }
-    .about-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+
+    .energy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 44px;
+      align-items: start;
+    }
+
+    .energy-left,
+    .energy-form-wrap {
+      padding-top: 12px;
+    }
+
+    .energy-logo {
+      margin-bottom: 40px;
+    }
+
+    .energy-logo img {
+      height: 50px;
+      width: auto;
+    }
+
+    .energy-left h2,
+    .cheer-copy h2 {
+      font-size: clamp(34px, 4.8vw, 62px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      margin-bottom: 20px;
+      color: var(--blue);
+    }
+
+    .energy-steps {
+      display: grid;
+      gap: 28px;
+      margin: 36px 0 38px;
+    }
+
+    .energy-step {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .energy-step-badge {
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid rgba(25,214,125,0.18);
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      box-shadow: 0 12px 24px rgba(11,59,130,0.06);
+    }
+
+    .energy-step h3 {
+      font-size: 18px;
+      margin-bottom: 6px;
+      color: #24303a;
+    }
+
+    .energy-step p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: #334155;
+      max-width: 520px;
+    }
+
+    .energy-proof {
+      margin-top: 36px;
+      border: 1px solid rgba(25,214,125,0.45);
+      background: linear-gradient(135deg, #d8f3e6, #eff7f2);
+      padding: 28px 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
       align-items: center;
     }
-    .about-text .section-label,
-    .about-text .section-title { text-align: left; }
-    .about-text .section-divider { margin: 0 0 24px; }
-    .about-text p {
-      color: var(--gray); font-family: 'Arial', sans-serif;
-      font-size: 15px; line-height: 1.8; margin-bottom: 20px;
-    }
-    .about-stats {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
-    }
-    .stat {
-      border-left: 2px solid var(--gold); padding-left: 20px;
-    }
-    .stat-number {
-      font-size: 42px; color: var(--gold); line-height: 1;
-      margin-bottom: 6px;
-    }
-    .stat-label {
-      font-family: 'Arial', sans-serif; font-size: 12px;
-      letter-spacing: 2px; text-transform: uppercase; color: var(--gray);
+
+    .energy-proof strong {
+      display: block;
+      font-size: 22px;
+      color: var(--blue);
+      margin-bottom: 4px;
     }
 
-    /* CONTACT */
-    #contact { background: var(--dark-2); }
-    .contact-inner {
-      max-width: 640px; margin: 0 auto; text-align: center;
+    .energy-proof span {
+      font-size: 15px;
+      color: #21334d;
+      line-height: 1.5;
     }
-    .contact-form {
-      display: flex; flex-direction: column; gap: 16px;
-      margin-top: 48px; text-align: left;
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-group { display: flex; flex-direction: column; gap: 8px; }
-    .form-group label {
-      font-family: 'Arial', sans-serif; font-size: 11px;
-      letter-spacing: 2px; text-transform: uppercase; color: var(--gray);
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      background: var(--dark-3); border: 1px solid rgba(201,168,76,0.2);
-      color: var(--white); padding: 14px 16px;
-      font-family: 'Georgia', serif; font-size: 14px;
-      outline: none; transition: border-color 0.3s;
-      resize: none;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--gold);
-    }
-    .form-group select option { background: var(--dark-3); }
-    .form-submit {
-      background: var(--gold); color: var(--dark);
-      padding: 18px; border: none; cursor: pointer;
-      font-family: 'Arial', sans-serif; font-size: 12px;
-      letter-spacing: 3px; text-transform: uppercase; font-weight: bold;
-      transition: all 0.3s; margin-top: 8px;
-    }
-    .form-submit:hover { background: var(--gold-light); }
 
-    /* FOOTER */
+    .energy-form-wrap {
+      border: 1px solid rgba(25,214,125,0.8);
+      background: var(--green-bg);
+      padding: 34px;
+    }
+
+    .energy-form-wrap h3,
+    .cheer-form-wrap h3 {
+      font-size: clamp(30px, 3vw, 52px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: var(--blue);
+      margin-bottom: 28px;
+    }
+
+    .energy-form,
+    .cheer-form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .energy-field-group {
+      display: grid;
+      gap: 12px;
+    }
+
+    .energy-label,
+    .cheer-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .energy-choice-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .energy-chip {
+      padding: 10px 14px;
+      border: 1px solid rgba(11,59,130,0.18);
+      background: #fff;
+      color: #24303a;
+      font-size: 14px;
+    }
+
+    .energy-input-row,
+    .cheer-input-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .energy-input,
+    .energy-select,
+    .cheer-input,
+    .cheer-select,
+    .cheer-textarea {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid rgba(11,59,130,0.14);
+      background: #fff;
+      font-size: 15px;
+      outline: none;
+      color: #1e293b;
+    }
+
+    .energy-input:focus,
+    .energy-select:focus,
+    .cheer-input:focus,
+    .cheer-select:focus,
+    .cheer-textarea:focus {
+      border-color: var(--blue);
+    }
+
+    .energy-submit,
+    .cheer-submit {
+      justify-self: center;
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      padding: 16px 28px;
+      min-width: 220px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .energy-submit:hover,
+    .cheer-submit:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    .mortgage-page {
+      background: linear-gradient(180deg, #111111 0%, #171717 100%);
+    }
+
+    .mortgage-card {
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+      border: 1px solid var(--line);
+      padding: 42px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(201,168,76,0.06));
+    }
+
+    .mortgage-card h2 {
+      font-size: clamp(32px, 4vw, 58px);
+      text-transform: uppercase;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+    }
+
+    .mortgage-card p {
+      color: var(--gray-soft);
+      font-size: 16px;
+      line-height: 1.85;
+      margin-bottom: 26px;
+    }
+
+    .cheer-page {
+      background: linear-gradient(180deg, #111111 0%, #171717 100%);
+    }
+
+    .cheer-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 42px;
+      align-items: start;
+    }
+
+    .cheer-copy p {
+      color: var(--gray-soft);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      max-width: 560px;
+    }
+
+    .cheer-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .cheer-list li {
+      border-left: 2px solid var(--gold);
+      padding-left: 16px;
+      color: var(--gray-soft);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .cheer-form-wrap {
+      border: 1px solid var(--line);
+      padding: 34px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .cheer-textarea {
+      min-height: 170px;
+      resize: vertical;
+    }
+
     footer {
-      background: #080808; padding: 48px 60px;
-      display: flex; align-items: center; justify-content: space-between;
-      border-top: 1px solid rgba(201,168,76,0.15);
-      flex-wrap: wrap; gap: 24px;
+      padding: 42px 0 56px;
+      border-top: 1px solid var(--line);
+      background: #090909;
     }
-    .footer-logo .symbol { font-size: 22px; color: var(--gold); }
-    .footer-logo .name {
-      font-family: 'Arial', sans-serif; font-size: 12px;
-      letter-spacing: 3px; text-transform: uppercase; color: var(--gray);
-    }
-    .footer-copy {
-      font-family: 'Arial', sans-serif; font-size: 12px;
-      color: rgba(154,154,154,0.5); letter-spacing: 1px;
-    }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a {
-      font-family: 'Arial', sans-serif; font-size: 12px;
-      letter-spacing: 2px; text-transform: uppercase;
-      color: var(--gray); text-decoration: none; transition: color 0.3s;
-    }
-    .footer-links a:hover { color: var(--gold); }
 
-    /* RESPONSIVE */
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .footer-left img {
+      height: 34px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(245,245,240,0.58);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: var(--gray-soft);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .footer-links a:hover { color: var(--gold-light); }
+
+    @media (max-width: 1100px) {
+      .service-grid,
+      .about-grid,
+      .energy-grid,
+      .cheer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card {
+        aspect-ratio: auto;
+        min-height: 400px;
+      }
+    }
+
     @media (max-width: 768px) {
-      nav { padding: 0 24px; }
-      .nav-links { display: none; }
-      .about-inner { grid-template-columns: 1fr; gap: 48px; }
-      .form-row { grid-template-columns: 1fr; }
-      footer { flex-direction: column; text-align: center; padding: 40px 24px; }
-      section { padding: 72px 24px; }
+      nav {
+        height: auto;
+        min-height: 82px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .nav-links {
+        width: 100%;
+        gap: 14px;
+      }
+
+      .page-shell {
+        width: min(100% - 24px, 1280px);
+      }
+
+      .hero-panel {
+        min-height: 46vh;
+        padding: 32px 22px;
+      }
+
+      .hero-title {
+        font-size: clamp(40px, 14vw, 74px);
+      }
+
+      .hero-actions {
+        min-width: 0;
+        width: 100%;
+        padding: 12px;
+      }
+
+      .services-section {
+        padding-bottom: 86px;
+      }
+
+      .service-card {
+        min-height: 320px;
+        padding: 24px;
+      }
+
+      .about-section,
+      .subpage {
+        padding: 84px 0;
+      }
+
+      .about-stats,
+      .energy-proof,
+      .energy-input-row,
+      .cheer-input-row {
+        grid-template-columns: 1fr;
+      }
+
+      .energy-form-wrap,
+      .cheer-form-wrap,
+      .mortgage-card {
+        padding: 24px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">
-    <div class="symbol">Α Ω</div>
-    <div class="name">Alpha <span>&</span> Omega<br>Consulting</div>
-  </div>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-content">
-    <div class="hero-eyebrow">Where Every Journey Begins & Ends</div>
-    <h1>Alpha <span class="amp">&</span> Omega<br>Consulting</h1>
-    <div class="hero-subtitle">Expert Guidance Across Industries</div>
-    <div class="hero-divider"></div>
-    <p>From energy markets to financial services to the world of competitive cheerleading — we bring deep expertise, strategic vision, and proven results to every client we serve.</p>
-    <div class="hero-buttons">
-      <a href="#services" class="btn-primary">Our Services</a>
-      <a href="#contact" class="btn-secondary">Work With Us</a>
+  <nav>
+    <div class="nav-brand">
+      <img alt="Alpha + Omega logo" src="data:image/png;base64,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" />
+      <div class="nav-brand-text">Alpha + Omega<br />Consulting</div>
     </div>
-  </div>
-</section>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#energy">Energy</a></li>
+      <li><a href="#cheer">Cheer</a></li>
+    </ul>
+    <a class="nav-button" href="#services">Explore</a>
+  </nav>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="section-label">What We Do</div>
-  <h2 class="section-title">Our Areas of Expertise</h2>
-  <div class="section-divider"></div>
-  <p class="section-intro">Three distinct practice areas united by a single commitment: delivering clarity, strategy, and results for our clients.</p>
-
-  <div class="services-grid">
-
-    <!-- Energy -->
-    <div class="service-card">
-      <div class="service-number">01</div>
-      <div class="service-icon">⚡</div>
-      <h3>Energy Consulting</h3>
-      <p>Navigating the complexities of energy markets, procurement, and strategy to help businesses reduce costs and optimize their energy footprint.</p>
-      <ul class="service-features">
-        <li>Energy procurement & contract negotiation</li>
-        <li>Market analysis & rate optimization</li>
-        <li>Deregulated market navigation</li>
-        <li>Supplier evaluation & management</li>
-        <li>Cost reduction strategies</li>
-      </ul>
-      <a href="#contact" class="service-link">Explore Energy Services →</a>
-    </div>
-
-    <!-- Mortgage -->
-    <div class="service-card">
-      <div class="service-number">02</div>
-      <div class="service-icon">🏠</div>
-      <h3>Mortgage & Lending Services</h3>
-      <p>Guiding individuals and businesses through the lending landscape with expert advice on mortgage products, financing structures, and financial planning.</p>
-      <ul class="service-features">
-        <li>Residential & commercial mortgage guidance</li>
-        <li>Loan product comparison & selection</li>
-        <li>Refinancing strategy</li>
-        <li>First-time homebuyer consulting</li>
-        <li>Investment property financing</li>
-      </ul>
-      <a href="#contact" class="service-link">Explore Lending Services →</a>
-    </div>
-
-    <!-- Cheerleading -->
-    <div class="service-card">
-      <div class="service-number">03</div>
-      <div class="service-icon">🏆</div>
-      <h3>Cheerleading Industry Consulting</h3>
-      <p>With over 20 years of experience spanning All Star, scholastic, and collegiate cheerleading — from competition judging to gym operations — we offer unmatched industry insight.</p>
-      <ul class="service-features">
-        <li>All Star gym business operations</li>
-        <li>Program development & structuring</li>
-        <li>Competition strategy & scoring analysis</li>
-        <li>Judging criteria & compliance guidance</li>
-        <li>Staff development & training systems</li>
-      </ul>
-      <a href="#contact" class="service-link">Explore Cheer Consulting →</a>
-    </div>
-
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-inner">
-    <div class="about-text">
-      <div class="section-label">Who We Are</div>
-      <h2 class="section-title">Built on Experience.<br>Driven by Results.</h2>
-      <div class="section-divider"></div>
-      <p>Alpha & Omega Consulting was founded on a simple belief: that expert guidance, delivered with integrity, transforms outcomes. Whether you're managing energy costs for a multi-location business, navigating a complex mortgage decision, or building a world-class cheerleading program — the right advisor makes all the difference.</p>
-      <p>Our principals bring decades of real-world experience across each of our practice areas. We don't just advise — we've worked inside these industries, and we bring that lived expertise directly to our clients.</p>
-      <a href="#contact" class="btn-primary" style="margin-top:16px;">Let's Connect</a>
-    </div>
-    <div class="about-stats">
-      <div class="stat">
-        <div class="stat-number">20+</div>
-        <div class="stat-label">Years in Cheerleading Industry</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">3</div>
-        <div class="stat-label">Expert Practice Areas</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">Client-First Approach</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">Α–Ω</div>
-        <div class="stat-label">Full-Spectrum Expertise</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-inner">
-    <div class="section-label">Get In Touch</div>
-    <h2 class="section-title">Ready to Navigate Forward?</h2>
-    <div class="section-divider"></div>
-    <p class="section-intro">Tell us about your situation and we'll connect you with the right expertise.</p>
-
-    <form class="contact-form" onsubmit="handleSubmit(event)">
-      <div class="form-row">
-        <div class="form-group">
-          <label>First Name</label>
-          <input type="text" placeholder="Jane" required />
-        </div>
-        <div class="form-group">
-          <label>Last Name</label>
-          <input type="text" placeholder="Smith" required />
+  <main>
+    <section class="hero-wrap" id="home">
+      <div class="page-shell">
+        <div class="hero-panel">
+          <div class="hero-content">
+            <div class="hero-kicker">Where Every Journey Begins + Ends</div>
+            <h1 class="hero-title">Alpha <span class="plus">+</span> Omega<br />Consulting</h1>
+            <p class="hero-subtitle">From energy markets to financial services to the world of competitive cheerleading, we bring deep expertise, strategic vision, and proven results to every client we serve.</p>
+            <div class="hero-actions" aria-label="Hero actions">
+              <a class="btn-primary" href="#services">View Services</a>
+              <a class="btn-secondary" href="#about">Learn More</a>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="form-group">
-        <label>Email Address</label>
-        <input type="email" placeholder="jane@example.com" required />
-      </div>
-      <div class="form-group">
-        <label>Area of Interest</label>
-        <select required>
-          <option value="" disabled selected>Select a service area</option>
-          <option>Energy Consulting</option>
-          <option>Mortgage & Lending Services</option>
-          <option>Cheerleading Industry Consulting</option>
-          <option>Multiple / Not Sure</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Tell Us About Your Needs</label>
-        <textarea rows="5" placeholder="Share a bit about your situation and what you're looking to accomplish..."></textarea>
-      </div>
-      <button type="submit" class="form-submit">Send Message →</button>
-    </form>
-  </div>
-</section>
+    </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">
-    <div class="symbol">Α Ω</div>
-    <div class="name">Alpha & Omega Consulting</div>
-  </div>
-  <div class="footer-copy">© 2026 Alpha & Omega Consulting. All rights reserved.</div>
-  <div class="footer-links">
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </div>
-</footer>
+    <section class="services-section" id="services">
+      <div class="page-shell">
+        <div class="section-head">
+          <div class="section-kicker">What We Do</div>
+          <h2 class="section-title">Our Areas Of Expertise</h2>
+          <p class="section-copy">Three distinct practice areas united by a single commitment: delivering clarity, strategy, and results for our clients.</p>
+        </div>
 
-<script>
-  // Smooth scroll for all anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const el = document.querySelector(a.getAttribute('href'));
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+        <div class="service-grid">
+          <article class="service-card">
+            <div>
+              <div class="card-top">
+                <div class="card-number">01</div>
+                <div class="card-icon">⚡</div>
+              </div>
+              <h3>Energy Consulting</h3>
+              <p>Commercial energy strategy, procurement support, supplier evaluation, and quote intake with a cleaner dedicated page.</p>
+            </div>
+            <button class="card-button" onclick="showSection('energy')">Open Energy Page</button>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="card-top">
+                <div class="card-number">02</div>
+                <div class="card-icon">🏠</div>
+              </div>
+              <h3>Mortgage Lending</h3>
+              <p>Mortgage and lending access through your Texana application link so visitors can move directly into the application flow.</p>
+            </div>
+            <a class="card-button" href="https://texanamtg.com/apply/?lo=1865829" target="_blank" rel="noopener">Go To Texana</a>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <div class="card-top">
+                <div class="card-number">03</div>
+                <div class="card-icon">🏆</div>
+              </div>
+              <h3>Cheer Consulting</h3>
+              <p>Program development, scoring analysis, gym operations, staffing structure, and a dedicated intake page for future lead capture.</p>
+            </div>
+            <button class="card-button" onclick="showSection('cheer')">Open Cheer Page</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="page-shell about-grid">
+        <div class="about-copy">
+          <div class="section-kicker">About</div>
+          <h2>Built On Real World Experience</h2>
+          <p>Alpha + Omega Consulting was founded on a simple belief: that expert guidance, delivered with integrity, transforms outcomes. Whether you're managing energy costs for a multi location business, navigating a complex mortgage decision, or building a world class cheerleading program, the right advisor makes all the difference.</p>
+          <p>Our principals bring decades of real world experience across each of our practice areas. We do not just advise. We have worked inside these industries, and we bring that lived expertise directly to our clients.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-value">3</div>
+            <div class="stat-label">Distinct advisory lanes</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">20+</div>
+            <div class="stat-label">Years in cheer related experience</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">1</div>
+            <div class="stat-label">Sharper premium home page</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">Next</div>
+            <div class="stat-label">CRM and form routing can be added later</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="subpage energy-page" id="energy">
+      <div class="page-shell energy-grid">
+        <div class="energy-left">
+          <div class="energy-logo">
+            <img alt="Alpha + Omega logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXkAAAFoCAYAAACyiYsDAABIg0lEQVR4nO2dZ1vjutaGH9mO0ysJfYDh/f8/6YVNCQTSe7Ot8yEjoziFAAmW7XWfi+vMnhkGQJBgJckI+HHmM3y4fH3+zv8+f/78+fPn/9k6+6sAAABQe0m7AAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAGC5pml+8skn1Wo1m82mUqlwOBxCCEmSJEkSPp8PABaLhWVZWZa9vb0Oh8PpdCqVSiGEdrtdKpWK4zjT6XR0dLS2trbdbnd8fJzNZgMAYrEYg8Hg8/lcLpdGo5HP53m9XhRFQgiDwSCEkM1mM5/P29ra5HI5H4/HcZxkMhmDwQCtVovjOCaTiaIo1Wo1pVJJq9WazWZBEARBkqR0On18fPz29jZJkmazmWVZWZaDwWAymYzH42az2fb2Nq/XCwBGo9FsNtvZ2ZFlmV6vV6vVYjAYhBBCSClJkjweD4/Hw2w2q6qq5XK5TqdjMpkAgMvl0nVd13WdTCa73e7s7IwjhHq93t7eztfXFwA0m81isRjP8/V6/eHhQUVRQggA0uk0m81mMpmcnp4KhUK5XI7jOL/fD4IgSZI4jjObzY7H4/Pzc1VVw+FQKpViMpl0Oh1JkmQymTQaDb/fL4qii4uLtra2BEFQVVWSJEVR0Ol0hJC7u7sxGMyyLI7j2Gw2j8fD4XC4XC7P8wAAKysrPp9PpVJxHMe2bWma1mq1drud0+nUarW4XC6SJEmSJEopQghJkiRJ0nVdVVV5nue67ubmZjabpVIpl8uFQmG73cbhcJ1OJ6VSicfjKIoEQYjFYltbW6lUKo/HQ9M0QghJkhRF0XWdJElJkgRBsFgsGo1Gt9sNAA6HQ9M0QgiDwWDVajWZTOr1elVVkqQkSZIkSRJRFKUoik6n02w2Q0hRFEopQghBEARBkqQsy1qt1m63c7lcUkrLshRFSZJUVdXh4aG3t3eWZVqt1r29PZ/Pv76+vlwu8/l8JpOJx+OZzWZ1XXd4eCjLskQiAQD0+/0gCIIg8Hq9TCaTnZ0d0zQdHBwsFgsA4PF4NE2jKMrFixc7Ozvv37+/vb3pdrs8Hg+Xy8XhcCilrK2t3b59u7+/v1Kp3N/fc7lc3W53dXX15eXFNE1FURRFkWVZVVW3b98uFArj4+N8Pl+SJFevXl2/fn2/3x8Oh8lk8tKlS3a7XZZltVotSZKmpqbi8TgAcDgclmU5nU4ymWQymTiOM51OB0EQhBBC6XQ6FArV63XHcW63G8dxw+FwKBT6fD4qlYoQQr/fz+Vy3W43SZIkSRJFURAEQRAURZIkKcuylmX39/fNzc3T09N0Ot3d3fV6vVarRVEUQghJkhRFEU3TqNVqkqRwOBy+vx8AvF4vSZLk83lFUaRSKQzD8Hq9BwcHtdttSZJUq9X379+vVqtSqdTt7a2qqiRJWq0WhmFZls3n86qqDg4OfD5fnU4HAA6Hg2ma5XJ5cHAghLxer7m5uY8fPzYajVQqFa/XK4qii4uLx8fHkqS6rjscDq/Xi+M4t9ttamqqUqkAAJ7nZVmWyWSazWbVajWfz2cymQCg2+0mSRLDMH6/n8lkOjo6kkgkQgj7+/u9vb1qtZplWZIkVVVlWZZlWdPpdD6fj8fj0Wg0nU6H4zhJktRqNQzD8Pl8rVYrSRIAeDweQghBECKRCEmSLMuSJI3H45IkicViCSGE4zhJkhRFURSFv78/Bw8evH79+qNHj4qiiKIoZVl2e3tbq9UikQhFUQ4ODnK5nNfr5fF4qKoqhBAOhwNBEJIkhUIhSZKUyWQiSRJBEHq9HkkSSZL0+/3pdLq2thYARqNRKBTi8TgA8Pv9NpsNwzDc3d1JkkRRFAzDkGUZnU5HURQcx0mSVFVVJBIhSZLX6+XxeARB4PF4qqp6e3vT6XRJkiRJWZZFURQKhXq9HpfLJUkSRVG2bV3XjY2N2Wy2mZmZra2t4zhJkgRB4PF4hBCXy8XhcEzTDAaD2Wx2dHSkUqlkMhmSJGma7u/v5/P5er2eJEnVajUajSaVSjRNw+PxUFXV2dlZ0zQWFhaKooiiKPL5fLvdzmaz0Wj0yZMn9/f3p6ens7OzR0dH8Xg8SZIkSSpJElVV1Wo1rVaLxWKDwWAwGOzt7bW3t0uS5HK56XR6enqqqurq6rq+vm6z2RRFkSTJ4/Hw+Xx4nqfVapFIhKqq0uk0n89ns9lIktTr9YODg2w2W61Wk8lkGIZhGMa2bWtra7VaLQzD8Hq9cDgc0zR1dXXJZJKiKJqmi8WiaZqKopiYmFBV1Wazubi4OD4+1uv1w+FwKBSm02mDwUBRFEVRJElRFHmeZ1nW3NxcqVQqk8lkMpmAIAhBEARB4vF4SZK4uLhYLBYcx9ntdgA0TWPbtiRJQggA4HK5hBCmaXK5nGmaDQ0Nw+FwVVWTyWR3d7fVajUYDI7jWJZlWZZlWfV6PQzD6Ha7bW1tQggcx7m7u7u8vHz+/Hlvb6+trU2SJE3TjI2Nw+FwURT5fL5er7u6usrn83g8HhYWFkRRdHR0tLa2Gg6H9Xq9JElJkszMzMjlcq6urra2toIgYFmW4zhFUYRhmKIoSqXSyMhIu90mSRJFUeRyuVwul9PpRFHk83kcx6nVahRFYVmW5XIZjUYZhqGqqv39/evXr4+Pj9vb22w2GwAikUhtbW12u53P5y0Wi6qqdnd3s9lsqVQqSZK8Xi8h5N69e+fPn9fr9Ww2GwB8Pp9er3d8fLxarWq1WhiG4TiO4zjX19dVVXV3d+PxeKFQmJmZyWQyy7JcLhcA6PV6LMuKooiiKPL5fJlMpl6vR1EUd3d3m5ub3W63qqr39/fpdrt0Ot3T09M7OzvNZrOyLEuSJK1Wi8vl+v1+bW0tFosZhmE2m5mZmRRFkWVZqVQqGo2G4zhFUZAkSb/f39vbQ9M0m81mMBhMTEw0Gg2JRAIA8Hq9SJKUJJFIpNlsPj4+ZrPZwcFBvV5P0zS1Wi0Wi4XjOMuydDodl8uF4zjHcXK5nNvtJkkSRVG4XC6SJGmaYrGYpmkjIyMsy4IgYFmW4zhFUbIsq9Vq0zTDMJIkdXd3G4/H8/l8VVULCwsgCIIgCMIwzM/Pw+HwYrEYQRC8Xq+np6e9vb2iKJIkWZZVVdV1XVmWdTqdXC7H87zRaEQIgWmaQqGQzWbT6XQsywKAbduG47jRaPThw4f7+/uqqhoMBkVRBEEQhGFYlqWqqlQqAQC9Xi+fz3d3d+v1ejQaURRFkiQcx7G1tYVhmFwuF4vFYjQaJZPJeDx+eHh4fHxcVVV7e3vhcBgjRkZGurq6VFXV7/c3Gg2SJEmS6XQ6Go2G4zhhGKIoSiwW8/l8qVQqy7KqqgDAsizTNFVVVVUcx3EcJ5PJTCbT1dVVVVWTyWSxWAAAn8/HcRzHcW63G8uy9Xpd13VVVb1er6urq7i4ODw83NvbK5fL8Xg8kUiE4zgsy4qiiKIoURR5nqfVahEEQRAEQRCEEE3T0Wj0+PhYVVWmaYqi6O/vb2xs0Gq1WJY1Go1qtVqDwQCFQqFQKNTW1ubxeCRJmkwmkiQZhmE0Gq2vr6vVagD4fD6tVotlWdPpNEEQGIZxenp6c3MzSZKqqiRJkiTJ7/d7e3urq6vJZDKTyQSAz+dD0zR1d3cTExMikYhpmiaTCYZhuLu7q6qqRkZGcrmcw+EQRZGmaVarlWVZg8Hg4uIiGo1mMBi0Wq1oNOrr69vb27VaLQzD8Pl8hBAul4vH4/H7/TKZjGEYuq7T6XTpdBoA0Gq1QqGQYRhZlmUyGQzDWFtbQ9M0aZpuamq6u7uLooiiKHEcZ7VaURRF13VZliVJkiRJkiRJ0m63C4XCxMREOByura1NJpM0TTNNEwRB0Gg0SZIkSRJFUURRFEVRhGFYVdX29nYul8vn8wGA0+m0Wq1cLhcA8Pl8HMe5u7sTQmBZFggCz/PW1tZmZmZRFEXXdd1ut1wu53K5Wq2Wz+dJktRqNQzDqNVqURQZhiGKoqIoSqfT4XAYj8eFQiEej8dxnO12u7+/X9d1iUQin89ns9l4PB5FUdbrdV3XtdvtTCYTAAzDkCSJ4zjtdhvHcXq9Hr/fD4IgSZIkSRKPx0NVVY7jBEGQJEnb29vRaFQqlUqlUo7jBEFQFIUQ4nA4zGazVCqV8/l8s9msqqrDw8O6rjscDpfLJYoiWZZVVb24uPD5fIZhWJalqqpmZmYWFhY8z7MsS5IkSZJpmgaDASFE13WSJOVyOYPBAAAikQhN0zRN0zRNM5lM4zhVVQ0Gg0gkQgiqqnr16lVXV8fj8fDw8Pz8vKqqi4uLJEmmaTqdTkEQJEmSJEmS4XCYTCaDwWAwGOzt7W1tbUVRFE3T3W73/Px8NBrV63VFUURRlMlkPp9P13Ucx0mShGEYAAwGAx6PR1VVGIZRFMX29vbd3d3w+PxoNBpZliWTCQCIxWK6rqOoqr29vWq1GgRBURRFURRFVVUdHBxkMhm73c7lcgHAcRzTNHme53K5RCIRRVEsy5IkSZJkWZZhGJIkqVarNpsNQRDhcJiqqnq93mKxiKIok8mk2+2mUqkA4PF4NE1D13XT6XR/f7+qqlarZVkWx3G6rnN9fV0ikUCSJE3Tqqru7e1RFMVisWw2m9PpTE1NmUwmSZJUVbW6uqqqKk3T8vl8kiQJgoAkSXVdV9d1VVV9++23v/zyC4/HY7fbRVHk83mSJEVRBEEQBEGmaWmapmkaSZKMjIy8vLx0Oh3TNHme57quj4+PpVIpSZIkSRLFYjGfz+fz+QzD8Pl8VVV5nufxeNTW1pIk6XQ6SZIkSZLkcrmDwWBra6vT6dTr9XK5nGVZBEGQJEnP85IkURR5nqfX63Ec53a7ZVkWRVGWZZWVlQQBEARBkiRRFKUoislk8vPPP5+dnXV3d4uiiKIokUgEm82m0+kcx4miKJVK7u3t9fX1iUQClmVFUeR5nmVZpVIpGo2GqqqioiJVVYlEwlVVh4eHTNN0XVepVAKAYRgmJibk83mDwWAwGExNTVVV1WKxwDAMx3FuLi5UVZVKpQgh8vk8g8FgMBhMJpOjo6Pz8/NVVX344YfT09PFYtFut5MkiWVZu91OkiRJkiRJkiTJ7Xb39/d7e3tpmmZZ1u/34/F4l8u12+0QBGF6elrXdUopHMcJgoAQQtlsNpvN8Xg8sVhM13VFUWRZlud5kiR5nmcYhs1mU1XV9fV1VVVBEGQYhmVZg8Egk8mQJEmS5PP5XC4XwzAQBKFQKGAYhiiKxWLRdV2n06nT6WQyGWmaBEHQdZ1lWZZlVVXtdrtEIpHhcDg4ONjZ2cFxnKZprq+v4/F4JpMJAAzDcDgcmqapqioWi8vlEr/fD4IgCMIwRFEURdF1nWVZkiQ5jjMMg2ma4XAYj8dDURSJRAIApVIpSZJ0XRcEwWKxkCRJVVW73e7s7AghNE2TJElFUfT7/Xw+n81ms9lsNpvN19fX0WhUFEXXddVqtbIsC4KAoigQBEGSJEmSJEmSJKIoKpUKwzD8fj+fz8fzvLe31zRNnueZTCaZTAaDwQCAx+NBEARJkqZpgiC4uLiIRCLNZtPpdNpsNrVaLQzDqNVqMBgkSZIkSRLDMOI4TgghpmlVVd3e3i6VSlVVTU1NhUIhVVWJRAIA4PF4kiQFBQWqqvL5fAaDgX6/T5Kk6upqURRpmv7www9XV1eKoujxeAghJEn6/X5VVVNTU6FQyGaz5XI5SZJkWZZpmgAAmqYxDOPu7m5tbU0QhJIkSZLEYrFGo5HjOE3TtFotkiQdHR3VajUAQFEUSZK6rjscDjQaDcuyVCqVTCaDwWDQ6/U4jvP69evT01NBEFVVZVkWQRA8z7MsS5IkSZIkSZLhcNjc3Nzt27fj8fjW1taqqoIgYFmW4zhVVQ0Gg6IoURTpdDqSJNE0zfHxsWEYkiTRdV25XI7jOMuy8Xj89evX79+/r1QqfD6fYRhRFEWRJMuy6XT6+vXr8/PzhmHIsixJkuRyuQAAiqJUVdXf3//48WOz2RRF0Ww2k8mkx+OZTCaWZfV6PZ/Pd3R0lMvlKIoSi8W63W5d18lkMpvNRVEURVEsyxIEAY/HQ9M0QRC6rjscDkEQhGEYAAwGA6VSicViNBoNkiQ5jvP5fMlk0m63G4/HVVW1WCwsy2JZFsdxn89nMpn8fj8A8Hg8kiQZhiHLslQq1Wq1fD6fzWYTQhBFEYlEJElS1/VqtbKzs4MhCFVVhULB5/NlMpl0Ot3c3Dwej9vb2wA0m82SJPl8ns1mU1VVv98PAMuyqqqmp6enp6eqqjo8PEySJEmS4zhN0xRF0XWdZVmmaQAAx3Gu66qqKpVKkiRpmiaTCQCIxWK2bY/HQ9M0JpNJu90mSZLFYjGbzcbj8Wg0QhCE4zjT6XQymQwAhBC73Y7jOO12u5WVlVwuV1XV/f39tVqtVCqFQqEsy+7u7hQKBSFEURQcx7m+vo5hGE3TAAAKhYLFYtFut1NVVXVd53ne9fV1pVJJkiQej8disVgikdDr9fL5fFEURVEQBOv1OpmM4zhVVQ0Gg8Vi0Wq1JEni8Xiu6+I4Tk9Pq6qqTqfT29tbVVV7e3vJZDKDwYDL5fL5fFEUQRAEQRAEQb/f39vb29PTU7fbjWVZgiDgOM7j8fD5fOVyOYPBoNFo5PP5i4uLJpNJURTDMKIoQhAEr9drmiZJkuzt7cXj8VQqFa/XCwA8Hg+DwSCKolgsZjKZ8Xg8SZIkSZL7+/v29vb4fD6DwWAwmUw6nY7nOZIkhULBNE1JkqIoGIZRFMVms8lkMh6Pq6oKgoDjOG63m0wmi8ViVVUZhiiKfD6fz+cbjUZtbW06nQ5FUZqm+Xw+QRAcx4nFYjQaDZIkhUKhTCYTj8cDANFoVFEUSZJ8Pl8URRzHcRzH4/GQJImqqm63m81mURRFURQEQZBOp7PZbHmeJ0mSxWLBcRyLxSKfz2cymaqqGIZhMpkA4PF4VVUNBoPBYHByciKKIr/fb7fbiqIwm82SJPl8vtlsJkkSRVGoVCoYhmE0Gk1OTnZ2doqi6Pj4OCGEEOK6rq6uLooij8fD4/F4PB5VVcFg0O/3JUnS6/VQFEVRFI7jxGIxi8WiKIpiuVymaSqVSiRJkiRJkiQJgoAkScViMTs7W61WSZKEw+F2u12SJGmaJggCpmmKooiiiKIodV0Xj8dBEMRxnMvlQhAErVaLxWJ9fX2GYZjP5+PxeCzLkiQJAAzD8Pl8ZrNZVVV5nqfT6XRdV6/Xs9lsBEGQJImiKJIk0zTVajWbzcbj8Wq1GhAEQRAcx9lsNuVyOVVVV1dXkiQJgiAIgoAkSVVVb29vC4VCp9OZzWbD4TCfz7e3t4/H41QqFYfDkSTJ4/F4PB7D4bC5uWk2m2maJknS8/Pz6enpRVE0Ho9nZmZmMpl0XVepVAIAx3GqqqIoKkkSk8mE4zhRFEWSJJIkSZLhcBiDwWAwmUxcLpeiKJIkSZJ0Op3lcjmdTpfL5XQ6TafTTCYTQRAURRFFUQwGg0KhgMPhqKoqhBBVVVdXV2az2VQqFY1GQ9M0VVW7u7uqqhYXFwghRFEURVEURWmaJEmSJEmSJAiCIJvNpmmaQqFQVVVFUURRFEVReJ4nSZKqqkKhkMPhlMlkPB4PAAzDkGVZURQcx2maJkkSnU6nUqlkMhlVVY7j7O/vczgcgiDw+/0sy6qqqqurS6VSkiQJgoAkSVVV1Wo1Nzc3kiQJgoDjOJVKQRAURZIk6bqO4ziVSmEYRlVVhUKh6+vrcrkcx3Emk0m73S6KopiYmNBqtZIkYRiGJEnb29uqqjocDhzHuVwuVVWlUikWi8XhcEIIIeVyuYIg8Hq9KIrS6XQURXEc53A4FEWRy+W6rjscDjQaDUEQJEmSJEmSJEmS6XT64uJCVVWHh4dVVWmaplKp5PP5giDIsqzRaDRN0+VyuVwul8PhQBAESZJmZmYKhUJVVQzD4Hleq9VQFEVRFEVRJElJkmma4XCYTCYcx3Ec53K5PM+7uLiIRqNRFMXj8VAURa/X4zgOhUIBn89nMpl4PB6KoqIoQhAEURQFQRAEQRAE4XCYpmmaJk3TNE0ikQhVVV3XpdPp7u7uWq2W4zjNZrOqqnq9nslkkiTJ8/PzmZmZVFV1c3OTTCa73W6SJEmShGEYy7J8Pp/ZbGYYhmmaRqORpmkA4PF4TNN0XVepVAIAwzAQBEEQhKIoeDwegiDweDySJEmSJAiCIEmS4zhVVYVCIUVR2Wy2mZmZTCaTJEmSJEkcx6nVahRFURQFQRAEQZAkSZIkSZI0m81oNBrP85IkURTFYjGbzQghVVUURRFVVQghNzc3kiTxeLxWq6XrOqVSicfjQRAESZJ0XVepVIrH4xEEQVVVqVQqm82mUql4PB6JRAIAkiTpdDqZTKbVahEEQVVVkiS6rvt8Pq/XKwgCn89nMpnU63W73Q4A8Hq9iqJUVdX9/f3u7m6tVsvhcKIo4jiOz+dD13WTyeTs7Gx5eXl7e7ter2maRjQaNBoNRVE8z5MkCYIgSZIkSZIkSZLhcPj8+fPj4+Msy+7u7kRR5Pf7pVKpUCiE4zhBEARB4vF4NBoNURQcx3E4HI7jVFWVTCa73Y7jOG63G8uyJEkcx3Ecp1KpHMeJokgQBOv1+vDw8Pz8vCRJw+Fwq9Waz+fT6fQ4jmNZ1nVdKpXiOM7n85IkSZJ0Oh2DwQAApVJBEAQhRFEUQRCSJD0+PpaUlGRmZgYHB+v1eizL6na7LMtKpVLj8TgA4PF4JEnS39+v0WjQdV2z2VQURV3XvV6vVquFQiFJknw+H0EQJEmSJEmSJEmSJEkWiwXTNMMw+Hw+AAzDcDgceJ4niqJ4PB4sy6qq+v1+VVU/ffq0VCotLS2qqmIYhr29PRRFURRFURRBEJIkSZKkVquRJMlkMvn9/rq6uplMJoqiQqGQ5XIZj8eDwWAURa/XI4QQx3Ecx6lUKpIkSZIkSZIk6XQ6kiQul0uSJCzLqqoKhUJRFEmS6HQ6n8+n0+nweDydTjcajdi2bWmaYRhFUURRFEmSZLvdPj09ra2tGY1GkiR5nqcoihBCVVUdHBxYlmma5vV6URQVi8Ucx6mqqnQ6zefzVVWlUikcx7lcLqIo0ul0kiQZhmFZlslkMh6P9/f3JEkSi8VmZmZVVdXb21sul6vRaAAAgiAQBEEURVEUQRAEQRAEoVBI0zRt27Zt29bX18Xj8XK5XGdnJ5/PV1VVQgjHcRRFURQFQRCEEEIIQRCGYVhVVZIkQRD0+31VVYfDoW3bQghJkhBCVVV1d3eTyWSCIIiiKJIkSZIkSZIkSZJks9lsVVVdXV2ZTCbLsl6v5/P5VCqFQiFBEARBURQEQRAEQRAEQRAEQRAEwzC6rrMsq6rK5/PxeDwul8vn8zQajTQaDUEQJEmSJEkSx3EKhQIAx3EajQaCIJIkSZIkSZIkSZIkSZIkSZIkSZIk6f8AB3p8r0isf4EAAAAASUVORK5CYII=" />
+          </div>
+          <h2>Get A Free Energy Quote</h2>
+          <div class="energy-steps">
+            <div class="energy-step">
+              <div class="energy-step-badge">1</div>
+              <div>
+                <h3>Request A Free Quote</h3>
+                <p>Start by sharing some basic information about your business so pricing can be reviewed based on location, usage, and current structure.</p>
+              </div>
+            </div>
+            <div class="energy-step">
+              <div class="energy-step-badge">2</div>
+              <div>
+                <h3>Compare Your Options</h3>
+                <p>Review supplier options, contract structures, and commercial energy opportunities with a clearer intake flow built for quote collection.</p>
+              </div>
+            </div>
+            <div class="energy-step">
+              <div class="energy-step-badge">3</div>
+              <div>
+                <h3>Move Forward Cleanly</h3>
+                <p>Once the direction is clear, the next step can be a formal quote review, a proposal conversation, or direct enrollment support.</p>
+              </div>
+            </div>
+          </div>
+          <div class="energy-proof">
+            <div>
+              <strong>Commercial Focus</strong>
+              <span>Built to capture real business energy opportunities.</span>
+            </div>
+            <div>
+              <strong>Structured Intake</strong>
+              <span>Cleaner information collection before CRM routing is added.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="energy-form-wrap">
+          <h3>Get A Free Energy Quote</h3>
+          <form class="energy-form" onsubmit="fakeSubmit(event, 'energy')">
+            <div class="energy-field-group">
+              <div class="energy-label">Are you looking to save on energy for?</div>
+              <div class="energy-choice-row">
+                <div class="energy-chip">Business</div>
+                <div class="energy-chip">Residential</div>
+              </div>
+            </div>
+            <div class="energy-field-group">
+              <div class="energy-label">Is there currently power at the location?</div>
+              <div class="energy-choice-row">
+                <div class="energy-chip">Yes</div>
+                <div class="energy-chip">No</div>
+              </div>
+            </div>
+            <div class="energy-field-group">
+              <div class="energy-label">Average monthly bill</div>
+              <div class="energy-choice-row">
+                <div class="energy-chip">Less than $1000</div>
+                <div class="energy-chip">$1000 to $5000</div>
+                <div class="energy-chip">$5000 to $10000</div>
+                <div class="energy-chip">$10000+</div>
+              </div>
+            </div>
+            <input class="energy-input" type="text" placeholder="Company Name" required />
+            <div class="energy-input-row">
+              <input class="energy-input" type="text" placeholder="First Name" required />
+              <input class="energy-input" type="text" placeholder="Last Name" required />
+            </div>
+            <input class="energy-input" type="email" placeholder="Email Address" required />
+            <div class="energy-input-row">
+              <input class="energy-input" type="tel" placeholder="Phone Number" required />
+              <input class="energy-input" type="text" placeholder="Company Zip Code" required />
+            </div>
+            <button class="energy-submit" type="submit">Get A Free Quote</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="subpage mortgage-page" id="mortgage">
+      <div class="page-shell">
+        <div class="mortgage-card">
+          <div class="section-kicker">Mortgage Lending</div>
+          <h2>Direct Application Access</h2>
+          <p>This service routes straight to your Texana mortgage application page. If you want, a future version can include a branded bridge page before the external link.</p>
+          <a class="btn-primary" href="https://texanamtg.com/apply/?lo=1865829" target="_blank" rel="noopener">Open Texana Application</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="subpage cheer-page" id="cheer">
+      <div class="page-shell cheer-grid">
+        <div class="cheer-copy">
+          <div class="section-kicker">Cheerleading Industry Consulting</div>
+          <h2>Program Strategy. Operations. Performance.</h2>
+          <p>This page is set up as the second dedicated entry point. It gives you a place to collect interest from gym owners, school programs, and decision makers before you decide how you want to route leads.</p>
+          <p>The lead capture can stay simple for now, then later connect into a CRM, email workflow, or calendar booking process once you decide what system you want to use.</p>
+          <ul class="cheer-list">
+            <li>All Star gym business and program structure</li>
+            <li>Scoring review and competitive strategy</li>
+            <li>Staffing systems and operational guidance</li>
+            <li>School and program development consulting</li>
+            <li>Leadership support for owners and directors</li>
+          </ul>
+        </div>
+
+        <div class="cheer-form-wrap">
+          <h3>Request Cheer Consulting</h3>
+          <form class="cheer-form" onsubmit="fakeSubmit(event, 'cheer')">
+            <div class="cheer-input-row">
+              <input class="cheer-input" type="text" placeholder="First Name" required />
+              <input class="cheer-input" type="text" placeholder="Last Name" required />
+            </div>
+            <input class="cheer-input" type="email" placeholder="Email Address" required />
+            <input class="cheer-input" type="text" placeholder="Gym, Program, or Organization" />
+            <select class="cheer-select" required>
+              <option value="" selected disabled>Area of interest</option>
+              <option>All Star gym consulting</option>
+              <option>School program consulting</option>
+              <option>Scoring and routine analysis</option>
+              <option>Operations and staffing</option>
+              <option>General inquiry</option>
+            </select>
+            <textarea class="cheer-textarea" placeholder="Tell us about the program, challenge, or opportunity."></textarea>
+            <button class="cheer-submit" type="submit">Send Request</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="page-shell footer-inner">
+      <div class="footer-left">
+        <img alt="Alpha + Omega logo" src="data:image/png;base64,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" />
+        <div class="footer-copy">Alpha + Omega Consulting</div>
+      </div>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#energy" onclick="showSection('energy')">Energy</a>
+        <a href="#cheer" onclick="showSection('cheer')">Cheer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function showSection(sectionId) {
+      document.querySelectorAll('.subpage').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.classList.add('active');
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+      }
+    }
+
+    function fakeSubmit(event, type) {
+      event.preventDefault();
+      const button = event.target.querySelector('button');
+      button.textContent = type === 'energy' ? 'Quote Requested' : 'Request Sent';
+      button.style.background = '#16a34a';
+      setTimeout(() => {
+        button.textContent = type === 'energy' ? 'Get A Free Quote' : 'Send Request';
+        button.style.background = '';
+        event.target.reset();
+      }, 2400);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(event) {
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
+        const target = document.querySelector(href);
+        if (target && !this.hasAttribute('onclick')) {
+          event.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
     });
-  });
-
-  // Form submit handler
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.form-submit');
-    btn.textContent = '✓ Message Sent!';
-    btn.style.background = '#4CAF50';
-    btn.style.color = '#fff';
-    setTimeout(() => {
-      btn.textContent = 'Send Message →';
-      btn.style.background = '';
-      btn.style.color = '';
-      e.target.reset();
-    }, 3000);
-  }
-</script>
-
+  </script>
 </body>
 </html>
