@@ -38,103 +38,74 @@
       margin: 0 auto;
     }
 
-    nav {
+    .site-header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1000;
-      height: 84px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 28px;
       background: rgba(13, 13, 13, 0.94);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--line);
     }
 
-    .nav-brand {
+    .header-inner {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      min-width: 120px;
-    }
-
-    .nav-brand img {
-      display: block;
-      height: 40px;
-      width: auto;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
+      padding: 18px 0;
       gap: 24px;
-      list-style: none;
-      flex-wrap: wrap;
-      justify-content: center;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
     }
 
-    .nav-links > li {
-      position: relative;
-    }
-
-    .nav-links a,
-    .nav-links button {
-      background: transparent;
-      border: none;
-      text-decoration: none;
-      color: var(--gray-soft);
+    .brand {
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--white);
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 12px;
-      cursor: pointer;
+      line-height: 1.02;
+      flex-shrink: 0;
+    }
+
+    .brand-top,
+    .brand-bottom {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .brand-bottom {
+      margin-top: -2px;
+    }
+
+    .gold {
+      color: var(--gold-bright);
+      font-weight: 700;
+    }
+
+    .mobile-nav {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .mobile-nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       transition: color 0.22s ease;
-      font-family: inherit;
     }
 
-    .nav-links a:hover,
-    .nav-links button:hover,
-    .nav-links .dropdown:hover > button {
+    .mobile-nav a:hover {
       color: var(--gold-bright);
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      top: calc(100% + 14px);
-      left: 50%;
-      transform: translateX(-50%);
-      min-width: 220px;
-      background: #121212;
-      border: 1px solid var(--line);
-      padding: 12px 0;
-      display: none;
-      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
-    }
-
-    .dropdown-menu a {
-      display: block;
-      padding: 12px 18px;
-      text-transform: none;
-      letter-spacing: 0.03em;
-      font-size: 14px;
-      color: var(--gray-soft);
-    }
-
-    .dropdown-menu a:hover {
-      background: rgba(255,255,255,0.03);
-      color: var(--gold-bright);
-    }
-
-    .dropdown:hover .dropdown-menu {
-      display: block;
     }
 
     .hero-wrap {
-      padding: 118px 0 28px;
+      padding: 150px 0 28px;
       background:
         radial-gradient(circle at top, rgba(229, 200, 108, 0.18), transparent 36%),
         linear-gradient(180deg, #111111 0%, #0d0d0d 100%);
@@ -746,26 +717,42 @@
     }
 
     @media (max-width: 1024px) {
-      .nav-links {
-        position: static;
-        transform: none;
-        width: 100%;
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 16px 0;
       }
+
+      .mobile-nav {
+        width: 100%;
+        justify-content: space-between;
+        gap: 16px;
+      }
+    }
     }
 
     @media (max-width: 768px) {
-      nav {
-        height: auto;
-        min-height: 84px;
-        padding-top: 14px;
-        padding-bottom: 14px;
-        flex-wrap: wrap;
-        gap: 14px;
+      .page-shell {
+        width: min(100% - 24px, 1280px);
       }
 
-      .nav-links {
+      .brand-top,
+      .brand-bottom {
+        font-size: 22px;
+        letter-spacing: 0.06em;
+      }
+
+      .mobile-nav {
         width: 100%;
-        gap: 14px;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .mobile-nav a {
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 0.06em;
       }
 
       .page-shell {
@@ -828,22 +815,21 @@
   </style>
 </head>
 <body>
-  <nav class="header">
-  <div class="brand">
-  <div class="brand-line1">
-    <span class="brand-alpha">ALPHA</span>
-    <span class="brand-plus"> + </span>
-  </div>
-  <div class="brand-line2">OMEGA CONSULTING</div>
-</div>
+  <header class="site-header">
+  <div class="header-inner page-shell">
+    <div class="brand">
+      <div class="brand-top">ALPHA <span class="gold">+</span></div>
+      <div class="brand-bottom">OMEGA CONSULTING</div>
+    </div>
 
-  <ul class="nav-links">
-    <li><a href="#home">HOME</a></li>
-    <li><a href="#services">SERVICES</a></li>
-    <li><a href="#about">ABOUT</a></li>
-    <li><a href="#contact">CONTACT</a></li>
-  </ul>
-</nav>
+    <nav class="mobile-nav" aria-label="Primary navigation">
+      <a href="#home">HOME</a>
+      <a href="#services">SERVICES</a>
+      <a href="#about">ABOUT</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </div>
+</header>
 
 <style>
 .header{
@@ -925,9 +911,9 @@
     <section class="services-section" id="services">
       <div class="page-shell">
         <div class="section-head">
-          <div class="section-kicker"/div>
+          <div class="section-kicker">What We Do</div>
           <h2 class="section-title">What We Do</h2>
-          <p class="section-copy">Strategic, expert guidance across energy, lending, and all star cheer consulting.</p>
+          <p class="section-copy">Strategic guidance across energy, lending, and all star cheer consulting.</p>
         </div>
 
         <div class="service-grid">
