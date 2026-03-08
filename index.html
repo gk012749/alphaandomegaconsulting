@@ -58,11 +58,15 @@
     }
 
     .brand {
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      color: var(--white);
-      text-transform: uppercase;
-      line-height: 1.02;
-      flex-shrink: 0;
+      display:flex;
+      align-items:center;
+      flex-shrink:0;
+    }
+
+    .header-logo{
+      height:38px;
+      width:auto;
+      object-fit:contain;
     }
 
     .brand-top,
@@ -165,7 +169,9 @@
       max-width: 760px;
       margin: 0 auto 34px;
       color: rgba(245,245,240,0.8);
-      font-size: 18px;
+      font-size: 16px;
+      line-height: 1.8;
+      font-family: Inter, Arial, Helvetica, sans-serif;
       line-height: 1.8;
       font-family: Inter, Arial, Helvetica, sans-serif;
     }
@@ -819,7 +825,8 @@
   <header class="site-header">
   <div class="header-inner page-shell">
     <div class="brand">
-      <div class="brand-top">ALPHA <span class="gold">+</span></div>
+      <img src="https://raw.githubusercontent.com/gk012749/alphaandomegaconsulting/main/AOI.png" alt="Alpha + Omega Consulting" class="header-logo">
+    </div>
       <div class="brand-bottom">OMEGA CONSULTING</div>
     </div>
 
@@ -899,7 +906,7 @@
           <div class="hero-content">
             <div class="hero-kicker">Where Every Journey Begins + Ends</div>
             <h1 class="hero-title">Alpha <span class="plus">+</span> Omega<br />Consulting</h1>
-            <p class="hero-subtitle">From energy markets to financial services to the world of competitive cheerleading, we bring deep expertise, strategic vision, and proven results to every client we serve.</p>
+            <p class="hero-subtitle">From energy markets to financial services to the world of cheer business consulting, we bring deep expertise, strategic vision, and proven results to every client we serve.</p>
             <div class="hero-actions" aria-label="Hero actions">
               <a class="btn-primary" href="#services">View Services</a>
               <a class="btn-secondary" href="#about">Learn More</a>
@@ -1119,7 +1126,7 @@
   <footer>
     <div class="page-shell footer-inner">
       <div class="footer-left">
-        <img src="AOI.png" alt="Alpha + Omega logo" />
+        <img src="https://raw.githubusercontent.com/gk012749/alphaandomegaconsulting/main/AOI.png" alt="Alpha + Omega logo" />
         <div class="footer-copy">Alpha + Omega Consulting</div>
       </div>
       <div class="footer-links">
@@ -1189,4 +1196,3 @@
   </script>
 </body>
 </html>
-
