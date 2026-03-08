@@ -10,10 +10,8 @@
     :root {
       --gold: #c9a84c;
       --gold-bright: #e5c86c;
-      --gold-soft: rgba(229, 200, 108, 0.14);
       --dark: #0d0d0d;
       --dark-2: #171717;
-      --dark-3: #202020;
       --white: #f5f5f0;
       --gray-soft: #d7d7cf;
       --line: rgba(201, 168, 76, 0.2);
@@ -59,25 +57,14 @@
     .nav-brand {
       display: flex;
       align-items: center;
-      gap: 16px;
-      min-width: 0;
+      min-width: 120px;
     }
 
     .nav-brand img {
-      height: 46px;
+      display: block;
+      height: 40px;
       width: auto;
-      opacity: 0.98;
     }
-
-    .nav-brand-text {
-      font-size: 19px;
-      font-weight: 600;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      white-space: nowrap;
-    }
-
-    .nav-brand-text .plus { color: var(--gold-bright); }
 
     .nav-links {
       display: flex;
@@ -86,6 +73,9 @@
       list-style: none;
       flex-wrap: wrap;
       justify-content: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .nav-links > li {
@@ -99,7 +89,7 @@
       text-decoration: none;
       color: var(--gray-soft);
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       font-size: 12px;
       cursor: pointer;
       transition: color 0.22s ease;
@@ -486,16 +476,7 @@
 
     .energy-left,
     .energy-form-wrap {
-      padding-top: 12px;
-    }
-
-    .energy-logo {
-      margin-bottom: 40px;
-    }
-
-    .energy-logo img {
-      height: 48px;
-      width: auto;
+      padding-top: 0;
     }
 
     .energy-left h2,
@@ -657,32 +638,8 @@
       border-color: var(--gold);
     }
 
-    .mortgage-page,
     .cheer-page {
       background: linear-gradient(180deg, #111111 0%, #171717 100%);
-    }
-
-    .mortgage-card {
-      max-width: 780px;
-      margin: 0 auto;
-      text-align: center;
-      border: 1px solid var(--line);
-      padding: 42px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(229,200,108,0.06));
-    }
-
-    .mortgage-card h2 {
-      font-size: clamp(32px, 4vw, 58px);
-      text-transform: uppercase;
-      letter-spacing: -0.05em;
-      margin-bottom: 18px;
-    }
-
-    .mortgage-card p {
-      color: var(--gray-soft);
-      font-size: 16px;
-      line-height: 1.85;
-      margin-bottom: 26px;
     }
 
     .cheer-grid {
@@ -788,6 +745,14 @@
       }
     }
 
+    @media (max-width: 1024px) {
+      .nav-links {
+        position: static;
+        transform: none;
+        width: 100%;
+      }
+    }
+
     @media (max-width: 768px) {
       nav {
         height: auto;
@@ -805,10 +770,6 @@
 
       .page-shell {
         width: min(100% - 24px, 1280px);
-      }
-
-      .nav-brand-text {
-        font-size: 16px;
       }
 
       .hero-panel {
@@ -849,8 +810,7 @@
       }
 
       .energy-form-wrap,
-      .cheer-form-wrap,
-      .mortgage-card {
+      .cheer-form-wrap {
         padding: 24px;
       }
 
@@ -868,32 +828,89 @@
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-brand">
-      <img alt="Alpha + Omega logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAzIAAANmCAYAAAAhKr7MAAASYklEQVR4nO3XQQ0AIBDAMMC/50MDL7KkVbDv9swsAACAkvM7AAAA4JWRAQAAcowMAACQY2QAAL5m2dnZ/f39g4ODmZmZq6urh4eHDQ0N8/Pz9fX1M2fOvH79+v79+7m5ubm5uYWFhZ6env7+/v7+/v8/PzT09PExMT4+PjAwMC1a9fOnj27du3aAwAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAcH4I6QAAAHB+COkAAABwfgjpAAAAsP9t8U6nY1mW+Xy+vb29vb29cDgcSZKqqrIsS5IkSZIkSZLhcNhkMskwDG3bVFXV+fn5ZDKZP3/+dDqdTCaTTCYTRVEURfV6vVwul1KpxGKxWq0Wj8dDkiS2bdu2bdv29vb4+HhpaSld11VVhUIhVVWNRiNN07Is29vbhULBMAx1Xdd1nWmaQqFQqVRKURQcx3Ecp1Kpqqr6/X6dTscwDG3bkiQJgoCmaWmapmnJZDKqqpIkSZJkWZYoiqIo8vl8qVQqk8mkKIqIiIiDg4NisRjHcVVV9fX1vb29bdu2LMsQBEGSJEmSJEmSJEmSJEmmaXmeJ0kSx3F6vR6DwYBhGJZlVVVNTEy0Wq3V1dWmaWq1WkEQxHEcQRC0Wi0Wi8VisZimabIsC4IgkUhkWZZpmqqqNBoNkiQOh8PpdGq1WqfTyaZpsix7e3s6nY7jOKPRiKZpJEmSJEmSJElRFJIkQRCGYQzD8Pl8kiRJkiRZliVJkqqqVVUlEolMJsPj8bS0tGQyGSFEURS1Wi2TyVQqFQzDqNVqSZIkWZZpmkajQRAEJEniOM7j8ezs7Ewmk8Fg0Gq1oigKhULj8fjy8nJ5eTlVVb/fT9M0VVW5XI7jOIlEAgByuRwEQRRFkWmaqqqIiIi5ubm2trY4juM4TqfT6/XC4XCxWIxGo4ZhyLIsVVUVRZFlWVVVfX19mZmYiIiJd1+12m2VZJElFUfT29rZarYqiSJLEcZyqqpaWllqtFpIkQRAEQRAEQRCmaXq9HnEcJ0mS0Wg0GAyqqkpERDQ0NHR2dpaVlW3btvl8vvn5+ebmZjQa1ev1kiRJkiTRaPTU1JQsy9FoNIlEAgB6vR6maSqVSlVVvV4vURQ5jtPpdKIo0ul0kiQcx1EUURQRRdHf39/T09PZ2VkQBEVR5PP5UqlUQRAEQfD5fAwGg9lsJkkSx3G9Xi+RSOTxeCRJ4jgOg8Ggs7OTJEni8XgQBG3b5vP5ZDI5Ozs7mUz6/X6apqenp5IkQRAEQRAEQRAE8Xg8giAIgoAkSZIkSZIoiqKoqnQ6HcuyqqrS6XQikQAAj8dD0zTDMJIkhUKhTCZTrVaLxWKmaWq1GgAURaqq2tvbi4uLkiRBEMRxnMvlQhCE4zjT6XQ6nQ4A4HA4URQFQRAEQRAEwzCqqjRNMwyjVqsRBEG32717986fP//1119ZlsXhcIhGo4Ig8Hq9nJyc2Ww2nU5HURRFUTRNM01TURQcx5lMJoPBYGdnR5IkBEEQRVGCIGiaZjKZMAxDURQ3NzeGYXAch2EY5eXl69evm5ubVVXl8/k0TSMIAgC2bU3T5HK5crkcAARB4PP5WJYVBAFFUVVVFUURRVEURf1+P0mSWJb1+/1hGJIk8fl8lUqF4zgA4PF4iUQCRVEQBEGmaVarlWVZVVWlUonjOMuyVVU1m81s2w6HwxAEj8eTJEmDwSCEEEVRHMe5u7sTiUS+vr6SJFEURVEURVEURWmaDQ0NhmHIsqzRaPTo0aOzszPbtm3btiRJ2rZtRVEURZGmaTab7e7uTiaTCYIgJEniOE4QBEVRtFotSRIA8Hq9NpsNRVH9/f3RaFQQBFEURf1+fzweX19f1Wo1nU6H4zhVVU1PT1dWVgRB8Hg8hBAcx/F4PEEQBEEQvV7P87zRaERERJIkSZIkSZJkWZZlWZIki8WiKIooiqIoqqra29sTiUR3d3eapvF4PJIkqqrKsqxSqYRhGJIk6fV6n89H0zQcx3G73QAAqqqWlpb4fD6VSgWAz+eTJEkcxyFJ0nXdMAxVVXEcJ0mSIAg8Hg+fz9fX18ViMVVVQRA8Ho8gCB6Px+fz6XQ6VVXtdjtN09RqNQCAxWLBcZz5+fkWiwXHcRRFURRBEARB4vF4LMuSJEmSJElJktRqNTt27ODxeCRJURTFcRybm5uLi4uSJEEQRFEURfV6vZycHFEUURRpmh4fH3d1dQWAw+EQBIFpmq7rR0dHiUQiSZIkSZIkSZIkSRLFYjGfz0fTNNu2hUKhqqqIiIiLi4u5ubmSj8dBEARBFEURRVEURVEURVEURf1+P5FIJpFIpNls5nA4kiRJkiRBEARBEARB4vF4NBoNRVFVVYVCgW3bkiSRSOTxeDweD4IgURQFBQUA4HA4mUyG4zjbtjRN8/l8hBAiIiIik8m4XC5VVUVRBEGmaQqFQqVSi8Vi2Ww2g8GAx+PxeDxN08iybG1tQRAEQfB4PG3b8vl8kiQcx8nJyfm5ubZtQRAEQRAEQRAEQRAEQfB4PIIgQBAEQRAEQRAEQRAEwzBVVZIkQRCGYQzD8Pn8VquVJEmSJEmSJEkURVFV1eHhYVVVh4eHJUnS7/cTQmia5vP5VquV4ziSJEmSJElRFG3bkiQJAAzDaJrm8/lcLpdMJhN1XScIgt1uJ0mSJEkcx2EYxmaz9fX1WZZlMplQFIWqqmKxGEVRkiRBEMRxnNlsZhiGzWZTVdWbN2+2trYAQNM0oigKhUK7u7ssy0qlkqIoQRCqqlJVVdM0hUIhURQZhqEoitVq1Wq1UqkAAJ7nVVV1cHBQVVWmaQzD0HWdZVmlUklRFG3bkiQJgoAkSZIkiqIoqqrK5/MQQgghzWYzVVWlUqkkSVqtVqIoVqsVAJIkqqp6e3uFQmF8fBwEQRRFURQEQRAEQRC8Xi+fz6fT6XQ6j8dDEAQFBQWqqpqenm7btqmpKcMwJEni8XjHcY7jBEEQBEGmaYqiiKIojmNEIpHhcJjP55MkSZIkSZIkSZIkSRLEcRwA4HA4VVXV09PDZrOqqhAEQRRF0zQsy5IkSZIkq6ur8/l8x3FM0+RyORzHSSQSy7JcLpdVVYlEAgBVVYvFYrZtBEEQVVVNTEzYtm0QBEGmaYqiKI7jBEFQVVW9Xq9Wq4VhGJIkURTFZrOJiYkQQgghhBCiKJ7nDQ0N6XQ6VVU9Pz8TiURRFMuyTCYTFEVVVdXpdMuydDqdTCaTJEnHcWZmZqIo0ul0iUQCAJIkiqI4juPxeO7u7mQymdFoNJVKpdFodHd3V6vVQRAEQRAEQRAEQRAEQfB4PIIgQBAEQRAEQRAEQRAEwzCqqnQ6nYODg6mpqYmJia6urhAEQVdXV1VVQRCqqvL5fIqioiiSJElSFEVBEARBkiRRFEXLsiRJkiQURVFV1cHBQWtr6+TkJEmSJElSFEUURVGUZVkURVEURbIsy7IsQRDhcBiSJFEURVEURdlsNgA0TTM/P6+qKp1OJ4qiiKJIktRqNQzDMJlMkiRJkiSmaYqiSJIkSZIkSZIkSZIkSZIkSZIkSZL8B1wf1+3Y0n8wAAAAAElFTkSuQmCC" />
-      <div class="nav-brand-text">Alpha <span class="plus">+</span> Omega Consulting</div>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li class="dropdown">
-        <button type="button">Services</button>
-        <div class="dropdown-menu">
-          <a href="#energy" onclick="showSection('energy')">Energy Consulting</a>
-          <a href="https://texanamtg.com/apply/?lo=1865829" target="_blank" rel="noopener">Mortgage Lending</a>
-          <a href="#cheer" onclick="showSection('cheer')">Cheer Consulting</a>
-        </div>
-      </li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact Us</a></li>
-    </ul>
-  </nav>
+  <nav class="header">
+  <div class="brand">
+  <div class="brand-line1">
+    <span class="brand-alpha">ALPHA</span>
+    <span class="brand-plus"> + </span>
+  </div>
+  <div class="brand-line2">OMEGA CONSULTING</div>
+</div>
+
+  <ul class="nav-links">
+    <li><a href="#home">HOME</a></li>
+    <li><a href="#services">SERVICES</a></li>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+</nav>
+
+<style>
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 40px;
+  background:#000;
+}
+
+.brand{
+  font-family:"Montserrat",sans-serif;
+  text-transform:uppercase;
+  color:white;
+  line-height:1.05;
+}
+
+.brand-line1{
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:2px;
+}
+
+.brand-line2{
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:2px;
+  margin-top:-2px;
+}
+
+.brand-plus{
+  color:#d4af37;
+  font-weight:700;
+}
+
+.brand-plus{
+  color:#d4af37;
+  font-weight:700;
+}
+
+.nav-links{
+  list-style:none;
+  display:flex;
+  gap:40px;
+  margin:0 auto;
+}
+
+.nav-links a{
+  text-decoration:none;
+  font-family:"Montserrat",sans-serif;
+  color:white;
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:2px;
+}
+
+.nav-links a:hover{
+  color:#d4af37;
+}
+</style>
 
   <main>
     <section class="hero-wrap" id="home">
       <div class="page-shell">
         <div class="hero-panel">
           <div class="hero-content">
-            <div class="hero-kicker">Where Every Journey Begins and Ends</div>
+            <div class="hero-kicker">Where Every Journey Begins + Ends</div>
             <h1 class="hero-title">Alpha <span class="plus">+</span> Omega<br />Consulting</h1>
             <p class="hero-subtitle">From energy markets to financial services to the world of competitive cheerleading, we bring deep expertise, strategic vision, and proven results to every client we serve.</p>
             <div class="hero-actions" aria-label="Hero actions">
@@ -910,6 +927,7 @@
         <div class="section-head">
           <div class="section-kicker">What We Do</div>
           <h2 class="section-title">What We Do</h2>
+          <p class="section-copy">Strategic guidance across energy, lending, and all star cheer consulting.</p>
         </div>
 
         <div class="service-grid">
@@ -921,7 +939,7 @@
               <h3>Energy<br />Consulting</h3>
               <p>Commercial energy strategy, procurement support, supplier evaluation, and quote intake built around deregulated market guidance and supplier competition.</p>
             </div>
-            <button class="card-button" onclick="showSection('energy')">Get a Quote</button>
+            <button class="card-button" type="button" onclick="showSection('energy')">Get a Quote</button>
           </article>
 
           <article class="service-card">
@@ -943,7 +961,7 @@
               <h3>Cheer<br />Consulting</h3>
               <p>Everything from operational systems and staffing framework alignment to policy development, billing structure, retention strategy, and executive decision support.</p>
             </div>
-            <button class="card-button" onclick="showSection('cheer')">Tell Us More</button>
+            <button class="card-button" type="button" onclick="showSection('cheer')">Tell Us More</button>
           </article>
         </div>
       </div>
@@ -984,9 +1002,9 @@
         <h2 class="section-title">Choose The Right Entry Point</h2>
         <p class="section-copy">Use the path that fits what you need and we can build out the deeper routing later.</p>
         <div class="contact-actions">
-          <button class="contact-button primary" onclick="showSection('energy')">Energy Consulting</button>
+          <button class="contact-button primary" type="button" onclick="showSection('energy')">Energy Consulting</button>
           <a class="contact-button secondary" href="https://texanamtg.com/apply/?lo=1865829" target="_blank" rel="noopener">Mortgage Lending</a>
-          <button class="contact-button secondary" onclick="showSection('cheer')">Cheer Consulting</button>
+          <button class="contact-button secondary" type="button" onclick="showSection('cheer')">Cheer Consulting</button>
         </div>
       </div>
     </section>
@@ -994,9 +1012,6 @@
     <section class="subpage energy-page" id="energy">
       <div class="page-shell energy-grid">
         <div class="energy-left">
-          <div class="energy-logo">
-            <img alt="Alpha + Omega logo" src="data:image/png;base64,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" />
-          </div>
           <h2>Find The Best Commercial Energy Plans For Your Business</h2>
           <div class="energy-steps">
             <div class="energy-step">
@@ -1034,7 +1049,7 @@
         </div>
 
         <div class="energy-form-wrap">
-          <h3>Get A Free Commercial Energy Quote</h3>
+          <h3>Tell Us More</h3>
           <form class="energy-form" onsubmit="fakeSubmit(event, 'energy')">
             <div class="energy-field-group">
               <div class="energy-label">What commodity do you want priced?</div>
@@ -1047,10 +1062,10 @@
             <div class="energy-field-group">
               <div class="energy-label">Average monthly bill</div>
               <div class="energy-choice-row" data-chip-group="bill">
-                <button class="energy-chip active" type="button">Less than $1000</button>
-                <button class="energy-chip" type="button">$1000 to $5000</button>
-                <button class="energy-chip" type="button">$5000 to $10000</button>
-                <button class="energy-chip" type="button">$10000+</button>
+                <button class="energy-chip active" type="button">Less than $1,000</button>
+                <button class="energy-chip" type="button">$1,000 to $5,000</button>
+                <button class="energy-chip" type="button">$5,000 to $10,000</button>
+                <button class="energy-chip" type="button">$10,000+</button>
               </div>
             </div>
             <input class="energy-input" type="text" placeholder="Company Name" required />
@@ -1063,7 +1078,7 @@
               <input class="energy-input" type="tel" placeholder="Phone Number" required />
               <input class="energy-input" type="text" placeholder="Company Zip Code" required />
             </div>
-            <button class="energy-submit" type="submit">Get A Free Commercial Energy Quote</button>
+            <button class="energy-submit" type="submit">Get A Complimentary Commercial Energy Quote</button>
           </form>
         </div>
       </div>
@@ -1072,7 +1087,7 @@
     <section class="subpage cheer-page" id="cheer">
       <div class="page-shell cheer-grid">
         <div class="cheer-copy">
-          <div class="section-kicker">Cheerleading Industry Consulting</div>
+          <div class="section-kicker">All Star Cheerleading Industry Consulting</div>
           <h2>Program Strategy. Operations. Performance.</h2>
           <p>Executive level advisory guidance relating to the operational development and stabilization of an all star cheer and tumbling facility, structured as a strategic advisory relationship.</p>
           <p>Scope may include operational systems and structural guidance, compensation structure review and staffing framework alignment, policy development and enforcement structure, billing system guidance and tuition structure organization, retention strategy and program positioning, and executive level decision support.</p>
@@ -1117,7 +1132,7 @@
   <footer>
     <div class="page-shell footer-inner">
       <div class="footer-left">
-        <img alt="Alpha + Omega logo" src="data:image/png;base64,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" />
+        <img src="AOI.png" alt="Alpha + Omega logo" />
         <div class="footer-copy">Alpha + Omega Consulting</div>
       </div>
       <div class="footer-links">
@@ -1138,19 +1153,22 @@
       const target = document.getElementById(sectionId);
       if (target) {
         target.classList.add('active');
-        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
       }
     }
 
     function fakeSubmit(event, type) {
       event.preventDefault();
-      const button = event.target.querySelector('button');
+      const button = event.target.querySelector('button[type="submit"]');
       button.textContent = type === 'energy' ? 'Quote Requested' : 'Request Sent';
       button.style.background = 'var(--green-success)';
       button.style.borderColor = 'var(--green-success)';
       button.style.color = '#fff';
+
       setTimeout(() => {
-        button.textContent = type === 'energy' ? 'Get A Free Commercial Energy Quote' : 'Tell Us More';
+        button.textContent = type === 'energy' ? 'Get A Complimentary Commercial Energy Quote' : 'Tell Us More';
         button.style.background = '';
         button.style.borderColor = '';
         button.style.color = '';
@@ -1159,18 +1177,21 @@
     }
 
     document.querySelectorAll('.energy-chip').forEach(chip => {
-      chip.addEventListener('click', function() {
+      chip.addEventListener('click', function () {
         const row = this.closest('[data-chip-group]');
         if (!row) return;
-        row.querySelectorAll('.energy-chip').forEach(item => item.classList.remove('active'));
+        row.querySelectorAll('.energy-chip').forEach(item => {
+          item.classList.remove('active');
+        });
         this.classList.add('active');
       });
     });
 
     document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', function(event) {
+      link.addEventListener('click', function (event) {
         const href = this.getAttribute('href');
         if (!href || href === '#') return;
+        if (this.closest('.dropdown-menu')) return;
         const target = document.querySelector(href);
         if (target && !this.hasAttribute('onclick')) {
           event.preventDefault();
